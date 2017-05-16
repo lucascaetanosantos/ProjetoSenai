@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>AulaSenai</display-name>
 	<welcome-file-list>
-		<welcome-file>cidade_cad.xhtml</welcome-file>
+		<welcome-file>cidade_list.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<context-param>
@@ -24,6 +24,6 @@
 	</servlet-mapping>
 
 	<session-config>
-		<session-timeout>20</session-timeout>
+		<session-timeout>1</session-timeout>
 	</session-config>
 </web-app>

@@ -21,6 +21,12 @@ public class CidadeBean {
 	private List<Estado> estados = Arrays.asList(Estado.values());
 	private List<Cidade> cidades = new ArrayList<Cidade>();
 	
+	
+	
+	public CidadeBean() {
+		cidades = new CidadeDAO().listarCidades();
+	}
+
 	public String salvar(){
 		new CidadeDAO().salvar(cidade);
 		//cidades.add(cidade);
