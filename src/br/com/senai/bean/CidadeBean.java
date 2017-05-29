@@ -35,6 +35,19 @@ public class CidadeBean {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cidade salva com sucesso!"));
 		return "cidade_list?faces-redirect=true";
 	}
+	
+	public String editar(Cidade cidade){
+		this.cidade = cidade;
+		return "cidade_cad?faces-redirect=true";
+	}
+	
+	public String remover(Cidade cidade){
+		cidade.setActive(false);
+		this.cidade = cidade;
+		cidades.remove(cidade);
+		return "cidade_list?faces-redirect=true";
+	}
+	
 
 	public Cidade getCidade() {
 		return cidade;

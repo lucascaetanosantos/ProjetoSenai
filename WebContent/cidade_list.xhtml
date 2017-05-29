@@ -8,21 +8,29 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>SENAI - Cadastro de Cidades</title>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </h:head>
 <h:body>
 
+
+	<ui:include src="cabecalho.xhtml" />
+
 	<h:form>
-		
+
 		<p:growl />
-		
+
 		<p:panel header="Cadastro de Cidade">
 			<p:dataTable value="#{cidadeBean.cidades}" var="cidades"
 				emptyMessage="Ainda não temos registros para os critérios de busca">
-				<p:column headerText="Nome Cidade">
+				<p:column headerText="Nome Cidade" sortBy="#{cidades.nomeCidade}"
+					styleClass="width: 10%">
 					<h:outputText value="#{cidades.nomeCidade}" />
 				</p:column>
 
-				<p:column headerText="UF" width="30" style="text-align:center;">
+				<p:column headerText="UF" width="30" style="text-align:center"
+					styleClass="center" filterStyle="width: 30px"
+					filterBy="#{cidades.estadoCidade.sigla}">
 					<h:outputText value="#{cidades.estadoCidade.sigla}" />
 				</p:column>
 
@@ -40,7 +48,17 @@
 				</p:column>
 
 				<p:column headerText="Active" width="60" style="text-align:center;">
-					<p:selectBooleanCheckbox value="#{cidades.active}" />
+					<p:selectBooleanCheckbox value="#{cidades.active}" disabled="true" />
+				</p:column>
+
+				<p:column headerText="Editar" width="60" style="text-align:center;">
+					<p:commandButton icon="fa fa-fw fa-edit"
+						action="#{cidadeBean.editar(cidades)}" />
+				</p:column>
+
+				<p:column headerText="Excluir" width="60" style="text-align:center;">
+					<p:commandButton icon="fa fa-fw fa-remove"
+						action="#{cidadeBean.remover(cidades)}" />
 				</p:column>
 			</p:dataTable>
 		</p:panel>

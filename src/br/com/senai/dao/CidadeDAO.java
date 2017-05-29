@@ -21,7 +21,7 @@ public class CidadeDAO {
 	public List<Cidade> listarCidades(){
 		
 		EntityManager entityManager = JPAUtil.getEntityManager();
-		Query query = entityManager.createQuery("from Cidade Order By nomeCidade");
+		Query query = entityManager.createQuery("from Cidade where active='1' Order By nomeCidade");
 		return query.getResultList();
 	}
 }
