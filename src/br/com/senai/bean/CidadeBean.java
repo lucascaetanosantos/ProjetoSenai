@@ -41,13 +41,15 @@ public class CidadeBean {
 		return "cidade_cad?faces-redirect=true";
 	}
 	
-	public String remover(Cidade cidade){
-		cidade.setActive(false);
+	public void prepararExclusao(Cidade cidade) {
 		this.cidade = cidade;
-		cidades.remove(cidade);
-		return "cidade_list?faces-redirect=true";
 	}
-	
+
+	public void excluir() {
+		new CidadeDAO().excluir(cidade);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cidade deletada com sucesso!"));
+		cidades = new CidadeDAO().listarCidades();
+	}
 
 	public Cidade getCidade() {
 		return cidade;
@@ -72,5 +74,7 @@ public class CidadeBean {
 	public void setCidades(List<Cidade> cidades) {
 		this.cidades = cidades;
 	}
+
+	
 	
 }

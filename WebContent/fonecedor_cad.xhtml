@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>SENAI - Cadastro de Fornecedores</title>
+</h:head>
+<h:body>
+
+	<ui:include src="cabecalho.xhtml" />
+	
+	<h:form>
+		<p:growl />
+		<p:panel header="Cadastro de Fornecedor">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Nome fantasia:" for="nomefantasia" />
+				<p:inputText type="text" required="true" id="nomefantasia"
+					requiredMessage="O nome do Fornecedor deve conter entre 2 e 40 caracteres."
+					value="#{fornecedorBean.fornecedor.fantasiaFornecedor}" />
+
+				<p:outputLabel value="Razão social:" for="razaosocial" />
+				<p:inputText type="text" required="true" id="razaosocial"
+					requiredMessage="A razão social deve conter entre 2 e 40 caracteres."
+					value="#{fornecedorBean.fornecedor.razaoFornecedor}" />
+
+				<p:outputLabel value="Fundação do fornecedor:" for="fundacao" />
+				<p:calendar pattern="dd/MM/yy" required="true" id="fundacao"
+					requiredMessage="O campo de fundação do fornecedor deve ser preenchido"
+					value="#{fornecedorBean.fornecedor.fundacaoFornecedor}" />
+
+				<p:outputLabel value="CNPJ:" for="cnpj" />
+				<p:inputMask mask="99.999.999/9999-99" required="true" id="cnpj"
+					requiredMessage="O CNPJ do fornecedor necessita ser válido"
+					value="#{fornecedorBean.fornecedor.cnpjFornecedor}" />
+
+
+				<p:outputLabel value="IE:" for="ie" />
+				<p:inputText type="text" required="true" id="ie"
+					requiredMessage="O número de Inscrição Estadual deve ser preenchido"
+					value="#{fornecedorBean.fornecedor.ieFornecedor}" />
+
+
+				<p:outputLabel value="IM:" for="im" />
+				<p:inputText type="text" required="true" id="im"
+					requiredMessage="O número de Inscrição Municipal deve ser preenchido"
+					value="#{fornecedorBean.fornecedor.imFornecedor}" />
+
+				<p:outputLabel value="Email:" for="email" />
+				<p:inputText type="text" required="true" id="email"
+					requiredMessage="O email deve ser preenchido para efetuar cadastro"
+					value="#{fornecedorBean.fornecedor.emailFornecedor}" />
+
+				<p:outputLabel value="URL:" for="url" />
+				<p:inputText type="text" required="false" id="url"
+					value="#{fornecedorBean.fornecedor.urlFornecedor}" />
+
+				<p:outputLabel value="Fone A:" for="fonea" />
+				<p:inputMask mask="(99) 9 9999-9999" id="fonea" required="true"
+					requiredMessage="Preencha o telefone A corretamente"
+					value="#{fornecedorBean.fornecedor.foneaFornecedor}" />
+
+				<p:outputLabel value="Fone B:" for="foneb" />
+				<p:inputMask mask="(99) 9 9999-9999" id="foneb"
+					value="#{fornecedorBean.fornecedor.fonebFornecedor}" />
+
+				<p:outputLabel value="Próximo à:" for="proximoa" />
+				<p:inputText type="text" id="proximoa"
+					value="#{fornecedorBean.fornecedor.proximFornecedor}" />
+
+				<p:outputLabel value="Endereço:" for="endereco" />
+				<p:inputText type="text" id="endereco" required="true"
+					requiredMessage="O endereço do fornecedor deve ser informado"
+					value="#{fornecedorBean.fornecedor.enderecoFornecedor}" />
+
+				<p:outputLabel value="Número:" for="numero" />
+				<p:inputNumber minValue="1" required="true" id="numero"
+					requiredMessage="O número de residência do fornecedor deve ser informado"
+					value="#{fornecedorBean.fornecedor.numeroFornecedor}" />
+
+				<p:outputLabel value="Complemento:" for="complemento" />
+				<p:inputText type="text" id="complemento"
+					value="#{fornecedorBean.fornecedor.complementoFornecedor}" />
+
+				<p:outputLabel value="Bairro:" for="bairro" />
+				<p:inputText type="text" id="bairro"
+					value="#{fornecedorBean.fornecedor.bairroFornecedor}" />
+
+				<p:outputLabel value="CEP:" for="cep" />
+				<p:inputMask mask="99.999-999" id="cep" required="true"
+					requiredMessage="O Campo CEP deve ser preenchido corretamente"
+					value="#{fornecedorBean.fornecedor.cepFornecedor}" />
+
+				<p:outputLabel value="Cidade:" for="cidade" />
+				<p:inputText type="text" id="cidade" required="true"
+					requiredMessage="É preciso indicar a cidade em que o fornecedor se encontra"
+					value="#{fornecedorBean.fornecedor.cidadeFornecedor}" />
+
+				<p:outputLabel value="Observações:" for="observacoes" />
+				<p:inputTextarea id="observacoes"
+					value="#{fornecedorBean.fornecedor.obsFornecedor}" />
+
+				<p:outputLabel value="Data de cadastro" for="datacadastro" />
+				<p:calendar pattern="dd/MM/yy" id="datacadastro"
+					maxdate="#{fornecedorBean.fornecedor.lastUpdate}" required="true"
+					requiredMessage="Preencha campo 'Data do cadastro:'"
+					value="#{fornecedorBean.fornecedor.cadastroFornecedor}" />
+
+				<p:outputLabel />
+				<p:commandButton value="salvar" action="#{fornecedorBean.salvar}"
+					update="@form" icon="ui-icon-disk" id="saveBtn" />
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+
+</h:body>
+</html>

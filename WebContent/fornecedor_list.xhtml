@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SENAI - Lista de Fornecedores</title>
+</h:head>
+<h:body>
+
+	<ui:include src="cabecalho.xhtml" />
+
+	<h:form>
+		<p:panel header="Lista de Fornecedores">
+			<p:dataTable value="#{fornecedorBean.fornecedores}" var="fornecedor"
+				emptyMessage="Ainda não temos registros para os critérios de busca">
+
+				<p:column headerText="Nome fantasia"
+					filterBy="#{fornecedor.fantasiaFornecedor}"
+					filterStyle="max-width: 300px; min-width: 200px;">
+					<p:outputLabel value="#{fornecedor.fantasiaFornecedor}" />
+				</p:column>
+
+				<p:column headerText="CNPJ" width="160">
+					<p:outputLabel value="#{fornecedor.cnpjFornecedor}" />
+				</p:column>
+
+				<p:column headerText="Email">
+					<p:outputLabel value="#{fornecedor.emailFornecedor}" />
+				</p:column>
+
+				<p:column headerText="Fone A" width="140">
+					<p:outputLabel value="#{fornecedor.foneaFornecedor}" />
+				</p:column>
+
+				<p:column headerText="CEP" width="90">
+					<p:outputLabel value="#{fornecedor.cepFornecedor}" />
+				</p:column>
+
+				<p:column width="40">
+					<p:commandButton icon="ui-icon-pencil"
+						action="#{fornecedorBean.editar(fornecedor)}" />
+				</p:column>
+
+				<p:column headerText="Excluir" width="60" style="text-align:center;">
+					<<p:commandButton icon="ui-icon-closethick" update="@form"
+						actionListener="#{fornecedorBean.preparaExclusao(fornecedor)}"
+						oncomplete="PF('confirmaExclusaoDialog').show();" />
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog message="Deseja realmente excluir esta Cidade?"
+				widgetVar="confirmaExclusaoDialog">
+				<p:commandButton value="Sim" action="#{fornecedorBean.excluir()}"
+					oncomplete="PF('confirmaExclusaoDialog').hide();" update="@form" />
+				<p:commandButton value="Não"
+					oncomplete="PF('confirmaExclusaoDialog').hide();" />
+			</p:confirmDialog>
+
+		</p:panel>
+	</h:form>
+
+</h:body>
+</html>

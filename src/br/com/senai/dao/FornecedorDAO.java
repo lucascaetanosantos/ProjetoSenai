@@ -5,34 +5,33 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import br.com.senai.model.Cidade;
+import br.com.senai.model.Fornecedor;
 
-public class CidadeDAO {
+public class FornecedorDAO {
+	public void salvar(Fornecedor fornecedor){
 
-	public void salvar(Cidade cidade) {
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.merge(cidade);
+		entityManager.merge(fornecedor);
 		entityManager.getTransaction().commit();
 		entityManager.close();
+
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	public List<Cidade> listarCidades() {
-
+	public List<Fornecedor> listar() {
 		EntityManager entityManager = JPAUtil.getEntityManager();
-		Query query = entityManager.createQuery("from Cidade where active='1' Order By nomeCidade");
+		Query query = entityManager.createQuery("from Fornecedor");
 		return query.getResultList();
 	}
-
-	public void excluir(Cidade cidade) {
+	
+	public void delete(Fornecedor fornecedor) {
 
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		entityManager.getTransaction().begin();
-		cidade = entityManager.merge(cidade);
-		entityManager.remove(cidade);
+		fornecedor = entityManager.merge(fornecedor);
+		entityManager.remove(fornecedor);
 		entityManager.getTransaction().commit();
 		entityManager.close();
-
 	}
 }
